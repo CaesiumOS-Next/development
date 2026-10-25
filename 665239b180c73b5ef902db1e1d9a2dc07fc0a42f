@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f489fa66_9032e75c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4443982
+      },
+      "writtenOn": "2026-10-25T20:55:51Z",
+      "side": 1,
+      "message": "git fetch --no-filter --no-tags https://and roid.googlesource.com/platform/development refs/changes/94/1865694/1 \u0026\u0026 git checkout -b change-1865694 FETCH_HEAD",
+      "revId": "665239b180c73b5ef902db1e1d9a2dc07fc0a42f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
