@@ -40,7 +40,6 @@ import android.os.SystemClock;
 import android.view.Display;
 import android.view.IWindowManager;
 import android.view.MotionEvent;
-import android.view.Surface;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -730,14 +729,19 @@ public class Monkey {
         }
 
         mNetworkMonitor.start();
+        MonkeyRotationEvent restoreRotationEvent = null;
+        try {
+            restoreRotationEvent = MonkeyRotationEvent.createRestoreEvent(mWm);
+        } catch (RemoteException e) {
+            Logger.err.println("** Failed to save the original rotation state.");
+        }
         int crashedAtCycle = 0;
         try {
             crashedAtCycle = runMonkeyCycles();
         } finally {
-            // Release the rotation lock if it's still held and restore the
-            // original orientation.
-            new MonkeyRotationEvent(Surface.ROTATION_0, false).injectEvent(
-                mWm, mAm, mVerbose);
+            if (restoreRotationEvent != null) {
+                restoreRotationEvent.injectEvent(mWm, mAm, mVerbose);
+            }
         }
         mNetworkMonitor.stop();
 
