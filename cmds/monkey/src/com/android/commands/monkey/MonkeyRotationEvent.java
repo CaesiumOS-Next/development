@@ -41,6 +41,15 @@ public class MonkeyRotationEvent extends MonkeyEvent {
         mPersist = persist;
     }
 
+    /**
+     * Creates an event that restores the current rotation and rotation lock state.
+     */
+    public static MonkeyRotationEvent createRestoreEvent(IWindowManager iwm)
+            throws RemoteException {
+        return new MonkeyRotationEvent(
+                iwm.getDefaultDisplayRotation(), iwm.isRotationFrozen());
+    }
+
     @Override
     public int injectEvent(IWindowManager iwm, IActivityManager iam, int verbose) {
         if (verbose > 0) {
