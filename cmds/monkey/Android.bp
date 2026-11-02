@@ -38,6 +38,7 @@ android_test {
     static_libs: [
         "androidx.test.runner",
         "monkey_aidl-java",
+        "mockito-target-minus-junit4",
     ],
     jni_libs: [
         "libmonkey_jni",
